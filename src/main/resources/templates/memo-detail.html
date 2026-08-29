@@ -30,6 +30,9 @@
                     <a th:href="@{|/memo/delete/${memo.id}|}" class="btn btn-danger">
                         削除
                     </a>
+					<td>
+					    <span class="priority-badge" th:text="${memo.priority.label}">中</span>
+					</td>
                 </div>
             </div>
         </div>
