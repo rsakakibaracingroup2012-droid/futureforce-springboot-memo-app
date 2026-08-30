@@ -17,6 +17,13 @@
                 <i class="ri-add-circle-line"></i> 新規メモ
             </a>
         </div>
+		
+		<div class="search-container" style="margin-bottom: 20px;">
+		    <form th:action="@{/memo/search}" method="get" style="display: flex; gap: 8px;">
+		        <input type="text" name="keyword" th:value="${keyword}" placeholder="検索キーワードを入力" style="padding: 8px; flex: 1; border: 1px solid #ccc; border-radius: 4px;" />
+		        <button type="submit" class="btn btn-primary">検索</button>
+		    </form>
+		</div>
 
         <div class="notes-grid">
             <div class="note-card" th:each="memo : ${memos}">

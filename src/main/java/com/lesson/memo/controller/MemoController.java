@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +16,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lesson.memo.model.Memo;
 import com.lesson.memo.repository.MemoRepository;
-
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/memo")
@@ -124,5 +125,22 @@ public class MemoController {
         }
 
         return "redirect:/memo";
+    }
+    
+    @GetMapping("/search")
+    public String search(@RequestParam(name = "keyword", required = false) String keyword, Model model) {
+        List<Memo> list;
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            // キーワードがある場合：title または content で部分一致検索
+            list = memoRepository.findByTitleContainingOrContentContaining(keyword, keyword);
+        } else {
+            // キーワードが空の場合：全件表示
+            list = memoRepository.findAll();
+        }
+
+        model.addAttribute("memos", list);
+        model.addAttribute("keyword", keyword); // 検索窓に入力値を残すため
+        return "memo-list"; // templates/memo-list.html
     }
 }
