@@ -40,11 +40,4 @@ public class Memo {
     @Enumerated(EnumType.STRING)
     private Priority priority = Priority.MEDIUM; 
 
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
 }

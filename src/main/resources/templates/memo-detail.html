@@ -31,7 +31,9 @@
                         削除
                     </a>
 					<td>
-					    <span class="priority-badge" th:text="${memo.priority.label}">中</span>
+						<span class="note-badge" 
+						      th:classappend="${#strings.toLowerCase(memo.priority)}" 
+						      th:text="${memo.priority.label}">中</span>
 					</td>
                 </div>
             </div>
