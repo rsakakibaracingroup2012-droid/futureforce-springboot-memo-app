@@ -150,6 +150,8 @@ public class MemoController {
             // キーワードが空の場合：全件表示
             list = memoRepository.findAll();
         }
+        
+        list.sort(Comparator.comparing(Memo::getPriority));
 
         model.addAttribute("memos", list);
         model.addAttribute("keyword", keyword); // 検索窓に入力値を残すため
