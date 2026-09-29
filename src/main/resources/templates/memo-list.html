@@ -52,6 +52,12 @@
             <p>メモがありません</p>
             <a th:href="@{/memo/new}" class="btn btn-primary">新しいメモを作成</a>
         </div>
+		
+		<div>
+			<form th:action="@{/logout}" method="post">
+			    <button type="submit">ログアウト</button>
+			</form>
+		</div>
     </div>
     <script th:src="@{/js/common.js}"></script>
 </body>
