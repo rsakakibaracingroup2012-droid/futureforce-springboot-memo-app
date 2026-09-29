@@ -25,7 +25,7 @@ public class SecurityConfig {
             .formLogin(login -> login
                 .loginPage("/admin/signin")
                 .loginProcessingUrl("/admin/signin")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/memo", true)
                 .permitAll()
             )
             //ログアウト処理
